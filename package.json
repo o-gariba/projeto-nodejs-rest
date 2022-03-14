@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/o-gariba/projeto-nodejs-rest/issues"
   },
-  "homepage": "https://github.com/o-gariba/projeto-nodejs-rest"
+  "homepage": "https://github.com/o-gariba/projeto-nodejs-rest",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
