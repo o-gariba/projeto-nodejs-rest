@@ -1,0 +1,14 @@
+const conexao = require('../infra/conexao')
+
+class Atendimento {
+    adiciona(atendimento) {
+        const sql = 'INSERT INTO atendimentos SET ?'
+
+        conexao.query(sql, atendimento, (erro, resultado) => {
+            if (erro) throw erro
+            else console.log(resultado)
+        })
+    }
+}
+
+module.exports = new Atendimento
