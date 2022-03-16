@@ -2,7 +2,7 @@ const Atendimento = require('../models/atendimentos')
 
 module.exports = app => {
     app.get('/atendimentos', (req, res) => {
-        res.send('Você está em ATENDIMENTOS e está realizando um GET.')
+        Atendimento.lista(res)
     })
 
     app.post('/atendimentos', (req, res) => {
