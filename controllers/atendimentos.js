@@ -5,6 +5,12 @@ module.exports = app => {
         Atendimento.lista(res)
     })
 
+    app.get('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        Atendimento.buscaPorId(id, res)
+    })
+
     app.post('/atendimentos', (req, res) => {
         const atendimento = req.body
 
