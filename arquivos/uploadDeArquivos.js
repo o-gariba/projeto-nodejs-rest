@@ -1,4 +1,5 @@
- const fs = require('fs')
+const fs = require('fs')
+const path = require('path')
 
 //  fs.readFile('../assets/salsicha.jpg', (erro, buffer) => {
 //     if (erro) throw new Error(erro)
@@ -11,6 +12,19 @@
 //     }
 //  })
 
-fs.createReadStream('../assets/salsicha.jpg')
-    .pipe(fs.createWriteStream('../assets/salsicha-stream.jpg'))
-    .on('finish', () => console.log('Imagem escrita através de streams'));
+module.exports = (caminhoDaImagem, nomeNovaImagem, callbackSucesso) => {
+
+    const tipo = path.extname(caminhoDaImagem)
+    const extValidas = ['.png', '.jpg', '.jpeg']
+
+    if (!extValidas.includes(tipo)) {
+        const erro = 'Erro! Tipo de arquivo inválido'
+        callbackSucesso(erro);
+    } else {
+        const novoCaminho = `./assets/imagens/${nomeNovaImagem}${tipo}`;
+
+        fs.createReadStream(caminhoDaImagem)
+            .pipe(fs.createWriteStream(novoCaminho))
+            .on('finish', () => callbackSucesso(false, novoCaminho));
+    }
+}
